@@ -28,10 +28,10 @@ AFTER INSERT ON SANCION
 FOR EACH ROW
 BEGIN
     INSERT INTO AUDITORIA_TRANSACCIONES 
-    (id_administrador, tipo_evento, detalle_evento, usuario_auditor)
+    (id_prestamo, id_administrador, tipo_evento, detalle_evento, usuario_auditor)
     VALUES 
-    (NEW.id_administrador, 'NUEVA_SANCION', CONCAT('Sanción aplicada al usuario ', NEW.id_usuario, ' Motivo: ', NEW.motivo), CURRENT_USER());
-END //
+    (NEW.id_prestamo, NEW.id_administrador, 'NUEVA_SANCION', CONCAT('Sanción ID: ', NEW.id_sancion, ' aplicada al usuario ', NEW.id_usuario, '. Motivo: ', NEW.motivo), CURRENT_USER());
+END
 
 -- ==========================================
 -- 4.3 Funciones (Mínimo 2)
